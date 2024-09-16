@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменить студентика</title>
+    <style>
+        body {
+            background-color: #212121;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+        }
+        .form-container {
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .form-container input[type="text"],
+        .form-container input[type="number"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        .form-container input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #555;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Изменить студентика: {{ student.name }}</h2>
+        <form action="/edit_student/{{ student.id }}" method="post">
+            <input type="text" name="name" placeholder="ФИО" value="{{ student.name }}" required>
+            <input type="number" name="math" placeholder="Матан" min="0" max="100" value="{{ grades['math'] }}">
+            <input type="number" name="english" placeholder="Англ" min="0" max="100" value="{{ grades['english'] }}">
+            <input type="number" name="algem" placeholder="Алгем" min="0" max="100" value="{{ grades['algem'] }}">
+            <input type="submit" value="Изменить">
+        </form>
+    </div>
+</body>
+</html>

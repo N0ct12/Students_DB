@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+    <style>
+        body {
+            background-color: #212121;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+        }
+        .Students {
+            font-weight: bold;
+            background-color: black;
+            padding: 20px;
+        }
+        .Students p {
+            margin: 10px 0;
+        }
+        .Students img {
+            display: block;
+            margin: 0 auto;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+            background-color: #a9a9a9;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+            color: black;
+        }
+        th {
+            background-color: #555;
+            color: white;
+        }
+        td a {
+            text-decoration: none;
+            color: blue;
+        }
+        .sim {
+            background-color: black;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            display: block;
+            width: 100%;
+        }
+        .add-student {
+            display: block;
+            margin: 20px auto;
+            background-color: white;
+            color: blue;
+            text-decoration: none;
+            padding: 10px;
+            width: fit-content;
+        }
+    </style>
+</head>
+<body>
+    <div class="Students">
+        <p><img src="../static/stud.jfif" alt="Students Logo" width="200"></p>
+        <p><span style="font-size: large;">Таблица оценок студентов</span></p>
+    </div>
+    <table>
+        <tr>
+            <th>ФИО</th>
+            <th>Матан</th>
+            <th>Англ</th>
+            <th>Алгем</th>
+            <th>Действия</th>
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ row.name }}</td>
+            <td>{{ row.math if row.math is not none else 'Нет оценки'}}</td>
+            <td>{{ row.english if row.english is not none else 'Нет оценки' }}</td>
+            <td>{{ row.algem if row.algem is not none else 'Нет оценки'}}</td>
+            <td>
+                <a href="/edit_student/{{ row.id }}">Изменить студентика</a> |
+                <a href="/delete/{{ row.id }}">Выпилить</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/add" class="add-student">Добавить студентика</a>
+    <div class="sim">
+        <p>
+            <span style="font-size: large;align-content: end">VSU Teslyuk N.V.</span>
+        </p>
+    </div>
+</body>
+</html>

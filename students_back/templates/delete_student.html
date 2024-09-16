@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выпил</title>
+    <style>
+        body {
+            background-color: #212121;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+        }
+        .form-container {
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .form-container button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px;
+            background-color: #555;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+        }
+        .form-container button[type="submit"]:hover {
+            background-color: #777;
+        }
+        .btn-back {
+            width: 100%;
+            padding: 10px;
+            background-color: #555;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+        }
+        .btn-back:hover {
+            background-color: #777;
+        }
+        .back {
+            margin: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Функции выпила для {{ student.name }}</h1>
+        <form action="{{ url_for('delete', student_id=student.id) }}" method="POST" class="delete-form">
+            <input type="hidden" name="scope" value="student">
+            <button type="submit" class="btn-delete-student">Выпилить студента</button>
+        </form>
+        <form action="{{ url_for('delete', student_id=student.id) }}" method="POST" class="delete-form">
+            <input type="hidden" name="scope" value="marks">
+            <button type="submit" class="btn-delete-marks">Выпилить все оценки</button>
+        </form>
+        {% if marks %}
+        <form action="{{ url_for('delete', student_id=student.id) }}" method="POST" class="delete-form">
+            <input type="hidden" name="scope" value="marks">
+            <input type="hidden" name="subject" value="math">
+            <button type="submit" class="btn-delete-mark">Выпилить матан</button>
+        </form>
+        <form action="{{ url_for('delete', student_id=student.id) }}" method="POST" class="delete-form">
+            <input type="hidden" name="scope" value="marks">
+            <input type="hidden" name="subject" value="english">
+            <button type="submit" class="btn-delete-mark">Выпилить англ</button>
+        </form>
+        <form action="{{ url_for('delete', student_id=student.id) }}" method="POST" class="delete-form">
+            <input type="hidden" name="scope" value="marks">
+            <input type="hidden" name="subject" value="algem">
+            <button type="submit" class="btn-delete-mark">Выпилить алгем</button>
+        </form>
+        {% endif %}
+        <div class="back"><a href="/" class="btn-back">Назад</a></div>
+    </div>
+</body>
+</html>
